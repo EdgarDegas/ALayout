@@ -39,29 +39,6 @@ carthage update
 
 ### Add shadows to UIView
 
-What it looks like:
-
-![Add shadow to a floating card](assets/demo.jpeg)
-
-Code:
-
-```swift
-import ALayout
-
-class YourViewController: UIViewController {
-    // ...
-    
-    floatingCardView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.12, dx: 0, dy: 6, blur: 16, spread: -6))
-    floatingCardView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.08, dx: 0, dy: 2, blur: 42, spread: -6))
-    
-    // ...
-}
-```
-
-
-
-
-
 1. You first need to initialize a  `Shadow` object:
 
 ```swift
@@ -87,7 +64,25 @@ view.add(shadow)
 
 
 
-3. You can add multiple shadows to one view.
+3. You can add multiple shadows to one view. For example we add two shadows to a floating-card-style view:
+
+```swift
+import ALayout
+
+class YourViewController: UIViewController {
+    // ...
+    
+    floatingCardView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.12, dx: 0, dy: 6, blur: 16, spread: -6))
+    floatingCardView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.08, dx: 0, dy: 2, blur: 42, spread: -6))
+    
+    // ...
+}
+```
+
+
+What it looks like:
+
+![Add shadow to a floating card](assets/demo.jpeg)
 
 
 
