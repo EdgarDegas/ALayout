@@ -15,19 +15,19 @@ public struct Shadow {
     var spread : CGFloat  = 0
     var blur   : CGFloat  = 12
     
-    init(color: UIColor, opacity: CGFloat, dx: CGFloat, dy: CGFloat, blur: CGFloat, spread: CGFloat) {
+    public init(color: UIColor, opacity: CGFloat, dx: CGFloat, dy: CGFloat, blur: CGFloat, spread: CGFloat) {
         self.color = color; self.opacity = opacity; self.spread = spread; self.blur = blur
         self.offset = CGVector(dx: dx, dy: dy)
     }
 }
 
 public extension UIView {
-    func addGradientLayer(gradientLayer: CAGradientLayer) {
+    public func addGradientLayer(gradientLayer: CAGradientLayer) {
         gradientLayer.frame = bounds
         layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    func add(shadow: Shadow) -> CALayer {
+    public func add(shadow: Shadow) -> CALayer {
         let shadowLayer = CALayer()
         shadowLayer.frame = bounds
         shadowLayer.cornerRadius = layer.cornerRadius
@@ -39,7 +39,7 @@ public extension UIView {
 }
 
 public extension CALayer {
-    func add(shadow: Shadow) {
+    public func add(shadow: Shadow) {
         shadowColor   = shadow.color.cgColor
         shadowRadius  = shadow.blur
         shadowOffset  = CGSize(width: shadow.offset.dx, height: shadow.offset.dy)
