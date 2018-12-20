@@ -4,7 +4,7 @@ A dynamic framework that allows you to easily add shadows to a UIView instance, 
 
 Compatible with Swift 4.2 + and iOS 12.0 +.
 
-
+<br/>
 
 ## Getting Started
 
@@ -15,6 +15,9 @@ Make sure you have Carthage installed. Otherwise, simply install with Homebrew:
 ```bash
 brew install carthage
 ```
+
+<br/>
+<br/>
 
 ### Include it to your iOS Project
 
@@ -34,6 +37,8 @@ carthage update
 4. Open your xcode project, drag the `ALayout.framework` file into `Linked Frameworks and Libraries`.
 
 
+<br/>
+<br/>
 
 ## Quick tutorial
 
@@ -54,6 +59,7 @@ The parameters are basically the same with those in Sketch. In case you are not 
 * blur: `CGFloat`, the blur radius of shadow, positive value
 * spread: `CGFloat`, increase or decrese the size of shadow from the size of your view
 
+<br/>
 
 
 2. Then add it to your `UIView` instance: 
@@ -62,7 +68,19 @@ The parameters are basically the same with those in Sketch. In case you are not 
 view.add(shadow)
 ```
 
+If your view is created in IB, you may need to add this line:
 
+```swift
+view.clipsToBounds = false
+```
+
+> The `add` method creates a `CALayer` instance and add it to sublayers of you view's layer.
+>
+> This shadow layer and its shadow have the same `cornerRadius` with your UIView instance.
+>
+> The shadow layer has the same `backgroundColor` with your UIView instance. If your view is translucent, the transparency will change.  
+
+<br/>
 
 3. You can add multiple shadows to one view. For example we add two shadows to a floating-card-style view:
 
@@ -85,6 +103,8 @@ What it looks like:
 ![Add shadow to a floating card](assets/demo.jpeg)
 
 
+<br/>
+<br/>
 
 ### Add Gradient Background Color to UIView
 
