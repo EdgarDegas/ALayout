@@ -44,6 +44,14 @@ carthage update
 
 ### Add shadows to UIView
 
+0. Import ALayout
+
+```swift
+import ALayout
+```
+
+<br/>
+
 1. You first need to initialize a  `Shadow` object:
 
 ```swift
