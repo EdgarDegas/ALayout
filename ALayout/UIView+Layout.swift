@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Shadow {
+public struct Shadow {
     var color  : UIColor  = UIColor.black
     var offset : CGVector = CGVector(dx: 0, dy: 0)
     var opacity: CGFloat  = 0.15
@@ -21,7 +21,7 @@ struct Shadow {
     }
 }
 
-extension UIView {
+public extension UIView {
     func addGradientLayer(gradientLayer: CAGradientLayer) {
         gradientLayer.frame = bounds
         layer.insertSublayer(gradientLayer, at: 0)
@@ -38,7 +38,7 @@ extension UIView {
     }
 }
 
-extension CALayer {
+public extension CALayer {
     func add(shadow: Shadow) {
         shadowColor   = shadow.color.cgColor
         shadowRadius  = shadow.blur
