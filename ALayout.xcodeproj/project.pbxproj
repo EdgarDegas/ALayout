@@ -35,6 +35,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B3643A5E21CD3DFF009BC349 /* Shadow */ = {
+			isa = PBXGroup;
+			children = (
+				B3675A4321CBA5A3009FDA80 /* Shadow.swift */,
+				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
+			);
+			path = Shadow;
+			sourceTree = "<group>";
+		};
 		B3675A2E21CBA579009FDA80 = {
 			isa = PBXGroup;
 			children = (
@@ -54,9 +63,8 @@
 		B3675A3A21CBA579009FDA80 /* ALayout */ = {
 			isa = PBXGroup;
 			children = (
-				B3675A4321CBA5A3009FDA80 /* Shadow.swift */,
+				B3643A5E21CD3DFF009BC349 /* Shadow */,
 				B3643A5421CCEEAD009BC349 /* ALView.swift */,
-				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
 				B3643A5621CCF2C4009BC349 /* HasALViews.swift */,
 				B3675A3B21CBA579009FDA80 /* ALayout.h */,
 				B3675A3C21CBA579009FDA80 /* Info.plist */,
