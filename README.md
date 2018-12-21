@@ -42,7 +42,7 @@ carthage update
 
 ## Quick tutorial
 
-### Add shadows to UIView
+### Add Shadows to ALView
 
 0. Import ALayout
 
@@ -52,7 +52,7 @@ import ALayout
 
 <br/>
 
-1. You first need to initialize a  `Shadow` object:
+1. Initialize a  `Shadow` object:
 
 ```swift
 let shadow = Shadow(color: opacity: dx: dy: blur: spread)
@@ -69,17 +69,47 @@ The parameters are basically the same with those in Sketch. In case you are not 
 
 <br/>
 
+2. Make sure you view is a `ALView` instance. 
 
-2. Then add it to your `UIView` instance: 
+   * If you are using interface builder, select the view, and set it as a `ALView` instance from right panel.
+
+   ![image-20181221211348341](assets/image-20181221211348341-5398028.png)
+
+   * If you initialize your view with code:
+
+   ```swift
+   let someView = ALView(frame: )
+   ```
+
+
+<br/>
+
+3. Then add `shadow` to your `ALView` instance. You can do this in the `viewDidLoad()` function: 
 
 ```swift
-view.add(shadow)
+import ALayout
+
+class YourViewController: UIViewController {
+    
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // initialize and add the shadow to `someView`
+        let shadow = Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.12, dx: 0, dy: 6, blur: 16, spread: -6)
+        _ = someView.add(shadow)
+    }
+}
 ```
 
-If your view is created in IB, you may need to add this line:
+Method `add` returns the  `ShadowLayer` instance to which the shadow is attached. Add `_ = ` to silence the warning.
+
+
+
+>  If your view is created in IB, you may need to add this line:
 
 ```swift
-view.clipsToBounds = false
+someView.clipsToBounds = false
 ```
 
 > The `add` method creates a `CALayer` instance and add it to sublayers of you view's layer.
@@ -90,36 +120,36 @@ view.clipsToBounds = false
 
 <br/>
 
-3. You can add multiple shadows to one view. For example we add two shadows to a floating-card-style view:
+3. You can add multiple shadows to one view. For example we add two shadows to `captionView`:
 
 ```swift
 import ALayout
 
 class YourViewController: UIViewController {
-    // ...
     
-    floatingCardView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.12, dx: 0, dy: 6, blur: 16, spread: -6))
-    floatingCardView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.08, dx: 0, dy: 2, blur: 42, spread: -6))
-    
-    // ...
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // initialize and add shadows to `someView`
+        _ = captionView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.24, dx: 0, dy: 6, blur: 12, spread: -6))
+        _ = captionView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.16, dx: 0, dy: 4, blur: 16, spread: -6))
+    }
 }
+
 ```
 
-
-What it looks like:
-
-![Add shadow to a floating card](assets/demo.jpeg)
-
-
 <br/>
 <br/>
 
-### Add Gradient Background Color to UIView
+### Remove Shadows
 
-One line handles this:
+By calling method `removeShadows` of ALView, you can move all shadows you have added to `someView`. All `ShadowLayer` instances is returned by this function.
 
 ```swift
-someView.addGradientLayer(gradientLayer: myGradientLayer)
+_ = someView.removeShadows()
 ```
 
-Currently you need to create `myGradientLayer` (a `CAGradientLayer` instance) by yourself.
+
+
+<br/>

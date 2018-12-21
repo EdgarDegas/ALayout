@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B3643A5521CCEEAD009BC349 /* ALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3643A5421CCEEAD009BC349 /* ALView.swift */; };
+		B3643A5721CCF2C4009BC349 /* HasALViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3643A5621CCF2C4009BC349 /* HasALViews.swift */; };
 		B3675A3D21CBA579009FDA80 /* ALayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B3675A3B21CBA579009FDA80 /* ALayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3675A4421CBA5A4009FDA80 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3675A4321CBA5A3009FDA80 /* UIView+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B3643A5421CCEEAD009BC349 /* ALView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALView.swift; sourceTree = "<group>"; };
+		B3643A5621CCF2C4009BC349 /* HasALViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasALViews.swift; sourceTree = "<group>"; };
 		B3675A3821CBA579009FDA80 /* ALayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3675A3B21CBA579009FDA80 /* ALayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALayout.h; sourceTree = "<group>"; };
 		B3675A3C21CBA579009FDA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			children = (
 				B3675A4321CBA5A3009FDA80 /* UIView+Layout.swift */,
 				B3643A5421CCEEAD009BC349 /* ALView.swift */,
+				B3643A5621CCF2C4009BC349 /* HasALViews.swift */,
 				B3675A3B21CBA579009FDA80 /* ALayout.h */,
 				B3675A3C21CBA579009FDA80 /* Info.plist */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3643A5721CCF2C4009BC349 /* HasALViews.swift in Sources */,
 				B3643A5521CCEEAD009BC349 /* ALView.swift in Sources */,
 				B3675A4421CBA5A4009FDA80 /* UIView+Layout.swift in Sources */,
 			);

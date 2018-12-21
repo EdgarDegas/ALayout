@@ -28,24 +28,38 @@ public extension UIView {
     }
 }
 
-public extension ALView {
-    public func add(shadow: Shadow) -> ShadowLayer {
-        let shadowLayer = ShadowLayer()
-        shadowLayer.frame = bounds
-        shadowLayer.cornerRadius = layer.cornerRadius
-        shadowLayer.add(shadow: shadow)
-        shadowLayer.backgroundColor = backgroundColor?.cgColor
-        layer.insertSublayer(shadowLayer, at: 0)
-        return shadowLayer
-    }
-}
-
 public extension ShadowLayer {
-    public func add(shadow: Shadow) {
-        shadowColor   = shadow.color.cgColor
-        shadowRadius  = shadow.blur
-        shadowOffset  = CGSize(width: shadow.offset.dx, height: shadow.offset.dy)
+    public func set(shadow: Shadow, animated: Bool) {
         shadowOpacity = Float(shadow.opacity)
-        shadowPath = CGPath(roundedRect: bounds.insetBy(dx: -shadow.spread, dy: -shadow.spread), cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
+        shadowRadius  = shadow.blur
+        shadowColor   = shadow.color.cgColor
+        shadowOffset  = CGSize(width: shadow.offset.dx, height: shadow.offset.dy)
+        shadowPath    = CGPath(roundedRect: bounds.insetBy(dx: -shadow.spread, dy: -shadow.spread),
+                               cornerWidth: cornerRadius,
+                               cornerHeight: cornerRadius,
+                               transform: nil)
+        
+        guard animated else { return }
+        
+        let animations = CAAnimationGroup()
+        let radiusAnimation: CABasicAnimation = {
+            let theAnimation = CABasicAnimation(keyPath: "shadowRadius")
+            theAnimation.fromValue = 0.0
+            theAnimation.toValue = shadowRadius
+            return theAnimation
+        }()
+        
+        let opacityAnimation: CABasicAnimation = {
+            let theAnimation = CABasicAnimation(keyPath: "shadowOpacity")
+            theAnimation.fromValue = 0.0
+            theAnimation.toValue = shadowOpacity
+            return theAnimation
+        }()
+        
+        animations.animations = [radiusAnimation, opacityAnimation]
+        animations.duration = 0.24
+        animations.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        add(animations, forKey: "shadowAnimation")
     }
 }
