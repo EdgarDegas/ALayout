@@ -120,7 +120,7 @@ someView.clipsToBounds = false
 
 <br/>
 
-3. You can add multiple shadows to one view. For example we add two shadows to `captionView`:
+4. You can add multiple shadows to one view. For example we add two shadows to `captionView`:
 
 ```swift
 import ALayout
