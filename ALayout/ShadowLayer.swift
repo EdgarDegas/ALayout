@@ -1,35 +1,19 @@
 //
-//  UIView+GradientLayer.swift
-//  aCount
+//  ShadowLayer.swift
+//  ALayout
 //
-//  Created by 孙一萌 on 2018/11/24.
+//  Created by 孙一萌 on 2018/12/21.
 //  Copyright © 2018 iMoe. All rights reserved.
 //
 
 import UIKit
 
-public struct Shadow {
-    var color  : UIColor  = UIColor.black
-    var offset : CGVector = CGVector(dx: 0, dy: 0)
-    var opacity: CGFloat  = 0.15
-    var spread : CGFloat  = 0
-    var blur   : CGFloat  = 12
+open class ShadowLayer: CALayer {
+    public var shadow: Shadow!
     
-    public init(color: UIColor, opacity: CGFloat, dx: CGFloat, dy: CGFloat, blur: CGFloat, spread: CGFloat) {
-        self.color = color; self.opacity = opacity; self.spread = spread; self.blur = blur
-        self.offset = CGVector(dx: dx, dy: dy)
-    }
-}
-
-public extension UIView {
-    public func addGradientLayer(gradientLayer: CAGradientLayer) {
-        gradientLayer.frame = bounds
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-}
-
-public extension ShadowLayer {
     public func set(shadow: Shadow, animated: Bool) {
+        self.shadow = shadow
+        
         shadowOpacity = Float(shadow.opacity)
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
@@ -62,4 +46,15 @@ public extension ShadowLayer {
         
         add(animations, forKey: "shadowAnimation")
     }
+    
+    func layout() {
+        guard let superlayer = superlayer else { return }
+        frame = superlayer.bounds
+        let inset = -shadow.spread
+        shadowPath = CGPath(roundedRect: bounds.insetBy(dx: inset, dy: inset),
+                            cornerWidth: cornerRadius,
+                            cornerHeight: cornerRadius,
+                            transform: nil)
+    }
+    
 }

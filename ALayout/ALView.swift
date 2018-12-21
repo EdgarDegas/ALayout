@@ -8,14 +8,12 @@
 
 import UIKit
 
-open class ShadowLayer: CALayer { }
-
 open class ALView: UIView {
     open override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         if let sublayers = layer.sublayers {
             for sublayer in sublayers where sublayer is ShadowLayer {
-                sublayer.frame = bounds
+                (sublayer as! ShadowLayer).layout()
             }
         }
     }
@@ -33,10 +31,9 @@ open class ALView: UIView {
     
     public func add(shadow: Shadow, animated: Bool = false) -> ShadowLayer {
         let shadowLayer = ShadowLayer()
-        shadowLayer.frame = bounds
         shadowLayer.cornerRadius = layer.cornerRadius
-        shadowLayer.set(shadow: shadow, animated: animated)
         shadowLayer.backgroundColor = backgroundColor?.cgColor
+        shadowLayer.set(shadow: shadow, animated: animated)
         layer.insertSublayer(shadowLayer, at: 0)
         return shadowLayer
     }
