@@ -26,9 +26,11 @@ public extension UIView {
         gradientLayer.frame = bounds
         layer.insertSublayer(gradientLayer, at: 0)
     }
-    
-    public func add(shadow: Shadow) -> CALayer {
-        let shadowLayer = CALayer()
+}
+
+public extension ALView {
+    public func add(shadow: Shadow) -> ShadowLayer {
+        let shadowLayer = ShadowLayer()
         shadowLayer.frame = bounds
         shadowLayer.cornerRadius = layer.cornerRadius
         shadowLayer.add(shadow: shadow)
@@ -38,7 +40,7 @@ public extension UIView {
     }
 }
 
-public extension CALayer {
+public extension ShadowLayer {
     public func add(shadow: Shadow) {
         shadowColor   = shadow.color.cgColor
         shadowRadius  = shadow.blur
