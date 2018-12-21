@@ -27,13 +27,14 @@ public extension UIView {
         layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    public func add(shadow: Shadow) {
+    public func add(shadow: Shadow) -> CALayer {
         let shadowLayer = CALayer()
         shadowLayer.frame = bounds
         shadowLayer.cornerRadius = layer.cornerRadius
         shadowLayer.add(shadow: shadow)
         shadowLayer.backgroundColor = backgroundColor?.cgColor
         layer.insertSublayer(shadowLayer, at: 0)
+        return shadowLayer
     }
 }
 
