@@ -21,24 +21,19 @@ public struct Shadow {
     }
 }
 
+public typealias ShadowLayer = CALayer
+
 extension ALView {
+    
     open override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
-        if let sublayers = layer.sublayers {
-            for sublayer in sublayers where sublayer is ShadowLayer {
-                (sublayer as! ShadowLayer).layout()
-            }
-        }
+        for shadowHandler in needsLayoutShadowHandlers { shadowHandler() }
     }
     
     open func removeShadows() -> Array<ShadowLayer> {
-        var removed = Array<ShadowLayer>()
-        if let sublayers = layer.sublayers {
-            for sublayer in sublayers where sublayer is ShadowLayer {
-                removed.append(sublayer as! ShadowLayer)
-                sublayer.removeFromSuperlayer()
-            }
-        }
+        let removed = shadowLayers
+        for shadowLayer in shadowLayers { shadowLayer.removeFromSuperlayer() }
+        shadowLayers = Array<ShadowLayer>()
         return removed
     }
     
@@ -48,6 +43,17 @@ extension ALView {
         shadowLayer.backgroundColor = backgroundColor?.cgColor
         shadowLayer.set(shadow: shadow, animated: animated)
         layer.insertSublayer(shadowLayer, at: 0)
+        shadowLayers.append(shadowLayer)
+        
+        needsLayoutShadowHandlers.append {
+                shadowLayer.frame = self.bounds
+                let inset = -shadow.spread
+                shadowLayer.shadowPath = CGPath(roundedRect: self.bounds.insetBy(dx: inset, dy: inset),
+                                                cornerWidth: self.layer.cornerRadius,
+                                                cornerHeight: self.layer.cornerRadius,
+                                                transform: nil)
+        }
+        
         return shadowLayer
     }
 }

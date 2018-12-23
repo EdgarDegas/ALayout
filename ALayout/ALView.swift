@@ -8,4 +8,9 @@
 
 import UIKit
 
-open class ALView: UIView { }
+open class ALView: UIView {
+    public var shadowLayers = Array<ShadowLayer>()
+    
+    internal typealias ShadowLayoutHandlers = () -> Void
+    internal var needsLayoutShadowHandlers = Array<ShadowLayoutHandlers>()
+}

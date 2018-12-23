@@ -8,12 +8,8 @@
 
 import UIKit
 
-open class ShadowLayer: CALayer {
-    public var shadow: Shadow!
-    
+extension ShadowLayer {
     public func set(shadow: Shadow, animated: Bool) {
-        self.shadow = shadow
-        
         shadowOpacity = Float(shadow.opacity)
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
@@ -45,16 +41,6 @@ open class ShadowLayer: CALayer {
         animations.timingFunction = CAMediaTimingFunction(name: .easeOut)
         
         add(animations, forKey: "shadowAnimation")
-    }
-    
-    func layout() {
-        guard let superlayer = superlayer else { return }
-        frame = superlayer.bounds
-        let inset = -shadow.spread
-        shadowPath = CGPath(roundedRect: bounds.insetBy(dx: inset, dy: inset),
-                            cornerWidth: cornerRadius,
-                            cornerHeight: cornerRadius,
-                            transform: nil)
     }
     
 }
