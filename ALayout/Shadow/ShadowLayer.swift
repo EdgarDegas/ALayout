@@ -14,10 +14,12 @@ extension ShadowLayer {
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
         shadowOffset  = CGSize(width: shadow.offset.dx, height: shadow.offset.dy)
-        shadowPath    = CGPath(roundedRect: bounds.insetBy(dx: -shadow.spread, dy: -shadow.spread),
-                               cornerWidth: cornerRadius,
-                               cornerHeight: cornerRadius,
-                               transform: nil)
+        if bounds != CGRect.zero {
+            shadowPath    = CGPath(roundedRect: bounds.insetBy(dx: -shadow.spread, dy: -shadow.spread),
+                                   cornerWidth: cornerRadius,
+                                   cornerHeight: cornerRadius,
+                                   transform: nil)
+        }
         
         guard animated else { return }
         
@@ -42,5 +44,4 @@ extension ShadowLayer {
         
         add(animations, forKey: "shadowAnimation")
     }
-    
 }
