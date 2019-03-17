@@ -7,5 +7,6 @@
 //
 
 public protocol HavingShadow {
-    func set(shadow: Shadow, animated: Bool)
+    func set(shadow: Shadow, animated: Bool, completion: (() -> Void)?)
+    func removeShadow(animated: Bool, completion: (() -> Void)?)
 }

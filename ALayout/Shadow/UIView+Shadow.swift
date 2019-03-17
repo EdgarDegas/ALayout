@@ -9,15 +9,24 @@
 import UIKit
 
 extension UIView: HavingShadow {
-
-    open func set(shadow: Shadow, animated: Bool = false) {
-        if let sublayers = layer.sublayers {
-            sublayers.forEach { if $0 is ShadowLayer { $0.removeFromSuperlayer() } }
-        }
-        configureShadow(shadow, animated: animated)
+    
+    var shadowLayer: ShadowLayer? {
+        return layer.sublayers?.first(where: { $0 is ShadowLayer }) as? ShadowLayer
     }
     
-    open func layoutShadows() {
+    open func removeShadow(animated: Bool = false, completion: (() -> Void)? = nil) {
+        shadowLayer?.removeShadow(animated: animated, completion: completion)
+    }
+
+    open func set(shadow: Shadow, animated: Bool = false, completion: (() -> Void)? = nil) {
+        if let shadowLayer = shadowLayer {
+            shadowLayer.set(shadow: shadow, animated: animated, completion: completion)
+        } else {
+            configureShadow(shadow, animated: animated, completion: completion)
+        }
+    }
+    
+    open func layoutShadow() {
         guard let sublayers = layer.sublayers else { return }
         for shadowLayer in sublayers where shadowLayer is ShadowLayer {
             configureLayout(of: shadowLayer as! ShadowLayer)
@@ -28,12 +37,12 @@ extension UIView: HavingShadow {
 
 extension UIView {
     
-    private func configureShadow(_ shadow: Shadow, animated: Bool) {
+    private func configureShadow(_ shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
         let shadowLayer = ShadowLayer()
         shadowLayer.cornerRadius = layer.cornerRadius
         shadowLayer.backgroundColor = backgroundColor?.cgColor
         layer.insertSublayer(shadowLayer, at: 0)
-        shadowLayer.set(shadow: shadow, animated: animated)
+        shadowLayer.set(shadow: shadow, animated: animated, completion: completion)
         configureLayout(of: shadowLayer)
     }
     

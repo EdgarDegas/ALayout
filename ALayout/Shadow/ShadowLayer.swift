@@ -10,7 +10,12 @@ import UIKit
 
 public class ShadowLayer: CALayer {
     
-    private(set) var shadow: Shadow?
+    private(set) var shadow: Shadow? {
+        didSet {
+            guard let newValue = shadow else { return }
+            configureShadow(newValue)
+        }
+    }
     
     public override init() { super.init() }
     public override init(layer: Any) { super.init(layer: layer) }
@@ -22,11 +27,24 @@ public class ShadowLayer: CALayer {
 
 
 extension ShadowLayer: HavingShadow {
-    public func set(shadow: Shadow, animated: Bool) {
-        
-        if animated { animate(into: shadow) }
-        
+    public func set(shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
+        if animated { animate(into: shadow, completion: completion) }
         self.shadow = shadow
+        configureShadow(shadow)
+    }
+    
+    public func removeShadow(animated: Bool, completion: (() -> Void)?) {
+        set(shadow: .init(), animated: animated) {
+            self.removeFromSuperlayer()
+            completion?()
+        }
+    }
+    
+}
+
+extension ShadowLayer {
+    
+    private func configureShadow(_ shadow: Shadow) {
         shadowOpacity = Float(shadow.opacity)
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
@@ -39,21 +57,22 @@ extension ShadowLayer: HavingShadow {
                 cornerHeight: cornerRadius,
                 transform: nil)
         }
-
     }
-}
-
-extension ShadowLayer {
     
-    private func animate(into shadow: Shadow) {
+    private func animate(into shadow: Shadow, completion: (() -> Void)? = nil) {
+        let duration: TimeInterval = convertTime(0.25, from: superlayer)
         let animations = CAAnimationGroup()
         animations.animations = [
             blurAnimation   (to: shadow.blur   ),
             opacityAnimation(to: shadow.opacity),
             offsetAnimation (to: shadow.offset )
         ]
-        animations.duration = 0.25
+        animations.duration = duration
         animations.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            completion?()
+        }
         
         add(animations, forKey: "shadowAnimation")
     }
