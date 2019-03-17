@@ -2,7 +2,13 @@
 
 A dynamic framework that allows you to easily add shadows to a UIView instance, using the same shadow paramters in [Sketch](www.sketchapp.com).
 
+This framework even supports animations on showing / hiding or changing the shadow.
+
+> This project is on a unstable beta stage. Think twice before using it on a business project.
+
 Compatible with Swift 4.2 + and iOS 12.0 +.
+
+![ezgif.com-gif-maker](assets/Animations.png)
 
 <br/>
 
@@ -42,7 +48,7 @@ carthage update
 
 ## Quick tutorial
 
-### Add Shadows to ALView
+### Add Shadows to UIView
 
 0. Import ALayout
 
@@ -55,101 +61,79 @@ import ALayout
 1. Initialize a  `Shadow` object:
 
 ```swift
-let shadow = Shadow(color: opacity: dx: dy: blur: spread)
+Shadow(color:opacity:Offset:blur:spread:)
 ```
 
 The parameters are basically the same with those in Sketch. In case you are not familiar with UI design:
 
-* color: `UIColor`
+* color: `ShadowColor`, UIColor` is OK. Or you can use  `ShadowRGBAColor`, `ShadowHexColor` for convenience color setup.
 * opacity: `CGFloat`, ranging from 0.0 (transparent) to 1.0 (opaque)
-* dx: `CGFloat`, offset on x-axis, negative (leftward) or positive (rightward)
-* dy: `CGFloat`, offset on x-axis, negative (upward) or positive (downward)
+* offset, a tuple containing two CGFloat values:
+  * dx: `CGFloat`, offset on x-axis, negative (leftward) or positive (rightward)
+  * dy: `CGFloat`, offset on x-axis, negative (upward) or positive (downward)
 * blur: `CGFloat`, the blur radius of shadow, positive value
 * spread: `CGFloat`, increase or decrese the size of shadow from the size of your view
 
-<br/>
-
-2. Make sure you view is a `ALView` instance. 
-
-   * If you are using interface builder, select the view, and set it as a `ALView` instance from right panel.
-
-   ![image-20181221211348341](assets/image-20181221211348341-5398028.png)
-
-   * If you initialize your view with code:
-
-   ```swift
-   let someView = ALView(frame: )
-   ```
 
 
-<br/>
-
-3. Then add `shadow` to your `ALView` instance. You can do this in the `viewDidLoad()` function: 
+Initializing example:
 
 ```swift
-import ALayout
-
-class YourViewController: UIViewController {
-    
-    // MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // initialize and add the shadow to `someView`
-        let shadow = Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.12, dx: 0, dy: 6, blur: 16, spread: -6)
-        _ = someView.add(shadow)
-    }
-}
-```
-
-Method `add` returns the  `ShadowLayer` instance to which the shadow is attached. Add `_ = ` to silence the warning.
-
-
-
->  If your view is created in IB, you may need to add this line:
-
-```swift
-someView.clipsToBounds = false
-```
-
-> The `add` method creates a `CALayer` instance and add it to sublayers of you view's layer.
->
-> This shadow layer and its shadow have the same `cornerRadius` with your UIView instance.
->
-> The shadow layer has the same `backgroundColor` with your UIView instance. If your view is translucent, the transparency will change.  
-
-<br/>
-
-4. You can add multiple shadows to one view. For example we add two shadows to `captionView`:
-
-```swift
-import ALayout
-
-class YourViewController: UIViewController {
-    
-    // MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // initialize and add shadows to `someView`
-        _ = captionView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.24, dx: 0, dy: 6, blur: 12, spread: -6))
-        _ = captionView.add(shadow: Shadow(color: #colorLiteral(red: 0.6745098039, green: 0.8156862745, blue: 0.9921568627, alpha: 1), opacity: 0.16, dx: 0, dy: 4, blur: 16, spread: -6))
-    }
-}
-
-```
-
-<br/>
-<br/>
-
-### Remove Shadows
-
-By calling method `removeShadows` of ALView, you can move all shadows you have added to `someView`. All `ShadowLayer` instances is returned by this function.
-
-```swift
-_ = someView.removeShadows()
+let myShadow = Shadow(color: UIColor.black, opacity: 1, offset: (dx: 0, dy: 0), blur: 24)
 ```
 
 
 
 <br/>
+
+2. Set shadow:
+
+```swift
+myView.set(shadow: myShadow, animated: true)
+```
+
+
+
+And if you set a different `Shadow` instance now, you would see the shadow changing animation.
+
+```swift
+myView.set(shadow: anotherShadow, aniamted: true)
+```
+
+
+
+
+
+> Somtimes you may need to specify `clipsToBounds` to `false`:
+
+```swift
+myView.clipsToBounds = false
+```
+
+<br/>
+
+
+
+3. Remove shadow:
+
+```swift
+myView.removeShadow(animated: true)
+```
+
+<br/>
+
+
+
+4. If your user interface needs layout, you should call this method at a proper timing:
+
+```swift
+myView.layoutShadow()
+```
+
+
+
+<br/>
+
+## Under the Hood
+
+By calling `set(shadow:)` on UIView instances, the framework inserts a CALayer with shadow at the bottom of the sublayers of the view's layer.
