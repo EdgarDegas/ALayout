@@ -6,6 +6,8 @@
 //  Copyright © 2019 iMoe. All rights reserved.
 //
 
+import UIKit
+
 public protocol ShadowColor {
     var uiColor: UIColor { get }
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public struct Shadow {
     public typealias Offset = (dx: CGFloat, dy: CGFloat)
     public var color  : UIColor  = .black
