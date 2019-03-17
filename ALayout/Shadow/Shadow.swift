@@ -29,18 +29,3 @@ public struct Shadow {
         self.init(color: color, opacity: opacity, dx: dx, dy: dy, blur: blur, spread: 0)
     }
 }
-
-extension ALView {
-    
-    open override func layoutSublayers(of layer: CALayer) {
-        super.layoutSublayers(of: layer)
-        for shadowHandler in needsLayoutShadowHandlers { shadowHandler() }
-    }
-    
-    open func removeShadows() -> Array<ShadowLayer> {
-        let removed = shadowLayers
-        for shadowLayer in shadowLayers { shadowLayer.removeFromSuperlayer() }
-        shadowLayers = Array<ShadowLayer>()
-        return removed
-    }
-}
