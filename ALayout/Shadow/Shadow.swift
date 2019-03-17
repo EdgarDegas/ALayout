@@ -18,7 +18,10 @@ public struct Shadow {
     public init() { }
     
     public init(color: UIColor, opacity: CGFloat, dx: CGFloat, dy: CGFloat, blur: CGFloat, spread: CGFloat) {
-        self.color = color; self.opacity = opacity; self.spread = spread; self.blur = blur
+        self.color   = color
+        self.opacity = opacity
+        self.spread  = spread
+        self.blur    = blur
         self.offset = CGVector(dx: dx, dy: dy)
     }
     
