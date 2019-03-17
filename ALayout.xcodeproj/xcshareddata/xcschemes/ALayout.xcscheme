@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B3C99091223EAED9000BF91E"
+               BuildableName = "ALayoutTests.xctest"
+               BlueprintName = "ALayoutTests"
+               ReferencedContainer = "container:ALayout.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B3675A3721CBA579009FDA80"
+            BuildableName = "ALayout.framework"
+            BlueprintName = "ALayout"
+            ReferencedContainer = "container:ALayout.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

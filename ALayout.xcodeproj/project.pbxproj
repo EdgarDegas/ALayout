@@ -14,7 +14,19 @@
 		B3675A3D21CBA579009FDA80 /* ALayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B3675A3B21CBA579009FDA80 /* ALayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3675A4421CBA5A4009FDA80 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3675A4321CBA5A3009FDA80 /* Shadow.swift */; };
 		B3C9908B223E85FB000BF91E /* ShadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C9908A223E85FB000BF91E /* ShadowColor.swift */; };
+		B3C99095223EAED9000BF91E /* ALayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C99094223EAED9000BF91E /* ALayoutTests.swift */; };
+		B3C99097223EAED9000BF91E /* ALayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3675A3821CBA579009FDA80 /* ALayout.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B3C99098223EAED9000BF91E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3675A2F21CBA579009FDA80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3675A3721CBA579009FDA80;
+			remoteInfo = ALayout;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B30C6454223E618100F7206C /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -26,6 +38,9 @@
 		B3675A3C21CBA579009FDA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3675A4321CBA5A3009FDA80 /* Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		B3C9908A223E85FB000BF91E /* ShadowColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowColor.swift; sourceTree = "<group>"; };
+		B3C99092223EAED9000BF91E /* ALayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ALayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3C99094223EAED9000BF91E /* ALayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALayoutTests.swift; sourceTree = "<group>"; };
+		B3C99096223EAED9000BF91E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +48,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3C9908F223EAED9000BF91E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3C99097223EAED9000BF91E /* ALayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				B3675A3A21CBA579009FDA80 /* ALayout */,
+				B3C99093223EAED9000BF91E /* ALayoutTests */,
 				B3675A3921CBA579009FDA80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B3675A3821CBA579009FDA80 /* ALayout.framework */,
+				B3C99092223EAED9000BF91E /* ALayoutTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +101,15 @@
 				B3675A3C21CBA579009FDA80 /* Info.plist */,
 			);
 			path = ALayout;
+			sourceTree = "<group>";
+		};
+		B3C99093223EAED9000BF91E /* ALayoutTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3C99094223EAED9000BF91E /* ALayoutTests.swift */,
+				B3C99096223EAED9000BF91E /* Info.plist */,
+			);
+			path = ALayoutTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,18 +144,40 @@
 			productReference = B3675A3821CBA579009FDA80 /* ALayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B3C99091223EAED9000BF91E /* ALayoutTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3C9909C223EAED9000BF91E /* Build configuration list for PBXNativeTarget "ALayoutTests" */;
+			buildPhases = (
+				B3C9908E223EAED9000BF91E /* Sources */,
+				B3C9908F223EAED9000BF91E /* Frameworks */,
+				B3C99090223EAED9000BF91E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3C99099223EAED9000BF91E /* PBXTargetDependency */,
+			);
+			name = ALayoutTests;
+			productName = ALayoutTests;
+			productReference = B3C99092223EAED9000BF91E /* ALayoutTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B3675A2F21CBA579009FDA80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = iMoe;
 				TargetAttributes = {
 					B3675A3721CBA579009FDA80 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+					};
+					B3C99091223EAED9000BF91E = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -138,12 +194,20 @@
 			projectRoot = "";
 			targets = (
 				B3675A3721CBA579009FDA80 /* ALayout */,
+				B3C99091223EAED9000BF91E /* ALayoutTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B3675A3621CBA579009FDA80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3C99090223EAED9000BF91E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,7 +230,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B3C9908E223EAED9000BF91E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3C99095223EAED9000BF91E /* ALayoutTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3C99099223EAED9000BF91E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3675A3721CBA579009FDA80 /* ALayout */;
+			targetProxy = B3C99098223EAED9000BF91E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B3675A3E21CBA579009FDA80 /* Debug */ = {
@@ -346,6 +426,42 @@
 			};
 			name = Release;
 		};
+		B3C9909A223EAED9000BF91E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GVYB79VSRG;
+				INFOPLIST_FILE = ALayoutTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.iMoe.ALayoutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B3C9909B223EAED9000BF91E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GVYB79VSRG;
+				INFOPLIST_FILE = ALayoutTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.iMoe.ALayoutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -363,6 +479,15 @@
 			buildConfigurations = (
 				B3675A4121CBA579009FDA80 /* Debug */,
 				B3675A4221CBA579009FDA80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3C9909C223EAED9000BF91E /* Build configuration list for PBXNativeTarget "ALayoutTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3C9909A223EAED9000BF91E /* Debug */,
+				B3C9909B223EAED9000BF91E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
