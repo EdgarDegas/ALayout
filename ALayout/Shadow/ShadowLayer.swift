@@ -12,7 +12,8 @@ public class ShadowLayer: CALayer {
     
     private(set) var shadow: Shadow?
     
-    override init() { super.init() }
+    public override init() { super.init() }
+    public override init(layer: Any) { super.init(layer: layer) }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("Improper to initialize ShadowLayer from any IB.")
