@@ -1,0 +1,14 @@
+language: objective-c
+osx_image: xcode10.1
+xcode_project: ALayout.xcodeproj
+xcode_scheme: ALayout
+xcode_sdk: iphonesimulator12.1
+env:
+  global:
+    - FRAMEWORK_NAME=ALayout
+before_install:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
