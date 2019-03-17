@@ -17,6 +17,8 @@ deploy:
   api_key:
     secure: l3Ugnk9MwGK9oeaXYRoPfIK4G9w4k6w7aDBv8C4N5pZnbxXAe8RK2R64pfqEZC0AB4hW/Neg7dd9hSr57iKWjkgMeYq7uAhUQDjbTz0Z3tQHQwEA/jv5fZ/Zoqy6k5aLqpgFMOfwQT3waYkIpCJ5pICXyCV/roJp9wLtgtRPesmIV6cSMAvdbG5Kh9KahcMzULD2Fi8goVi7g8COzIvZybdoBmBVwlhqUlilqHTE3cEcycAZv0TWcIfnA3DExzH816pgQvCN8C93LjwZbvekAstf//s271hBGPin5eXJ9fCR80+oCKlxXHWzLVv3tqUF0wpX8go6w/2wZmEOrbsYupQjvPwZn8+cm+S+vaHD/ge5OISB1usfdRBpSvTvUXkt2fU9yy7+14ck50QKwmx+Ofe5KgMa5gd+NrS/4spOSww5HYYDHWee+u86x3AaTJsOgxHXSewgrJS35cRXJ1aR/KhChJHLhGEjLsPB1P6XuU/HnfW/iKfm83Gzpb0SdlYCAVHPuJcmfmcALsJkcIO/dVsHHY5qA6lOi3imsvg1utNf9UGWkoQqaCUB5ITTP2R1/9ANFu+KZ1Dqt2ebwDuRVGmAPSbAs3OQg1wiZ9pTUttS8mSjcvB2Fz7NqzJEjL2eHQFSzxqw80SqftC4cIw0iEyXsd0LHn7KPE9TjgmIawQ=
   file: "$FRAMEWORK_NAME.framework.zip"
+  skip_cleanup: true
   on:
     repo: EdgarDegas/ALayout
-    branch: update-documents
+    branch: master
+    tags: true
