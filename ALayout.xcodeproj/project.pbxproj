@@ -13,6 +13,7 @@
 		B3643A6021CD3F48009BC349 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3643A5F21CD3F48009BC349 /* UIView+Gradient.swift */; };
 		B3675A3D21CBA579009FDA80 /* ALayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B3675A3B21CBA579009FDA80 /* ALayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3675A4421CBA5A4009FDA80 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3675A4321CBA5A3009FDA80 /* Shadow.swift */; };
+		B3C9908B223E85FB000BF91E /* ShadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C9908A223E85FB000BF91E /* ShadowColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B3675A3B21CBA579009FDA80 /* ALayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALayout.h; sourceTree = "<group>"; };
 		B3675A3C21CBA579009FDA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3675A4321CBA5A3009FDA80 /* Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
+		B3C9908A223E85FB000BF91E /* ShadowColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 			children = (
 				B30C6454223E618100F7206C /* UIView+Shadow.swift */,
 				B3675A4321CBA5A3009FDA80 /* Shadow.swift */,
+				B3C9908A223E85FB000BF91E /* ShadowColor.swift */,
 				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
 				B30C6456223E643C00F7206C /* HavingShadow.swift */,
 			);
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3675A4421CBA5A4009FDA80 /* Shadow.swift in Sources */,
+				B3C9908B223E85FB000BF91E /* ShadowColor.swift in Sources */,
 				B3643A6021CD3F48009BC349 /* UIView+Gradient.swift in Sources */,
 				B30C6455223E618100F7206C /* UIView+Shadow.swift in Sources */,
 				B3643A5D21CD26FD009BC349 /* ShadowLayer.swift in Sources */,
