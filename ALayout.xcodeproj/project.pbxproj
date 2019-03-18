@@ -71,13 +71,12 @@
 		B3643A5E21CD3DFF009BC349 /* Shadow */ = {
 			isa = PBXGroup;
 			children = (
-				B3C990E222400351000BF91E /* LayerHavingShadow.swift */,
+				B3C2E73A22400D2E00A3D552 /* Protocols */,
 				B3C990E42240045D000BF91E /* CALayer+Shadow.swift */,
 				B30C6454223E618100F7206C /* UIView+Shadow.swift */,
+				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
 				B3675A4321CBA5A3009FDA80 /* Shadow.swift */,
 				B3C9908A223E85FB000BF91E /* ShadowColor.swift */,
-				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
-				B30C6456223E643C00F7206C /* HavingShadow.swift */,
 			);
 			path = Shadow;
 			sourceTree = "<group>";
@@ -118,6 +117,15 @@
 				B3C2E73522400C2D00A3D552 /* CGShortcuts.swift */,
 			);
 			path = Shortcuts;
+			sourceTree = "<group>";
+		};
+		B3C2E73A22400D2E00A3D552 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B3C990E222400351000BF91E /* LayerHavingShadow.swift */,
+				B30C6456223E643C00F7206C /* HavingShadow.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		B3C99093223EAED9000BF91E /* ALayoutTests */ = {
