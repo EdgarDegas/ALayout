@@ -1,4 +1,6 @@
-# ALayout [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)[![Build Status](https://travis-ci.com/EdgarDegas/ALayout.svg?branch=master)](https://travis-ci.com/EdgarDegas/ALayout)
+# ALayout 
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.com/EdgarDegas/ALayout.svg?branch=master)](https://travis-ci.com/EdgarDegas/ALayout)
 
 A dynamic framework that allows you to easily add shadows to a UIView instance, using the same shadow paramters in [Sketch](www.sketchapp.com).
 
