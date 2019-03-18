@@ -8,25 +8,36 @@
 
 import UIKit
 
+/// Convenient color setups.
+///
+/// Conformed by ShadowRGBAColor, ShadowHexColor and UIColor.
 public protocol ShadowColor {
     var uiColor: UIColor { get }
 }
 
+/// A convenient color setup with traditional RGBA values.
+///
+/// Call `ShadowRGBAColor.init(r:g:b:a:)` if encountering auto-completion failure.
 public struct ShadowRGBAColor: ShadowColor {
     var r: CGFloat
     var g: CGFloat
     var b: CGFloat
     var a: CGFloat
     
+    /// The corresponding UIColor instance.
     public var uiColor: UIColor {
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
 }
 
+/// A convenient color setup with hex value.
+///
+/// Call `ShadowRGBAColor.init(hex:alpha:)` if encountering auto-completion failure.
 public struct ShadowHexColor: ShadowColor {
     var hex: Int
     var alpha: CGFloat
     
+    /// The corresponding UIColor instance.
     public var uiColor: UIColor {
         let r: CGFloat = CGFloat((hex & 0xFF0000) >> 16) / 255.0
         let g: CGFloat = CGFloat((hex & 0x00FF00) >>  8) / 255.0
@@ -37,5 +48,6 @@ public struct ShadowHexColor: ShadowColor {
 }
 
 extension UIColor: ShadowColor {
+    /// Required by `ShadowColor` protocol. This value returns itself.
     public var uiColor: UIColor { return self }
 }
