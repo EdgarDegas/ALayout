@@ -1,4 +1,6 @@
-# ALayout [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)[![Build Status](https://travis-ci.com/EdgarDegas/ALayout.svg?branch=master)](https://travis-ci.com/EdgarDegas/ALayout)
+# ALayout 
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.com/EdgarDegas/ALayout.svg?branch=master)](https://travis-ci.com/EdgarDegas/ALayout)
 
 A dynamic framework that allows you to easily add shadows to a UIView instance, using the same shadow paramters in [Sketch](www.sketchapp.com).
 
@@ -39,9 +41,16 @@ github "EdgarDegas/ALayout"
 carthage update
 ```
 
-3. When `update` is done, a new folder `Carthage` is created. Get into  `Carthage/Build/iOS`, find  `ALayout.framework`.
-4. Open your xcode project, drag the `ALayout.framework` file into `Linked Frameworks and Libraries`.
+3. When `update` is done, a new folder `Carthage` is created. 
+   1. Go to your target's general setting page:
+      ![Linked Framework and Libraries](assets/Linked Framework and Libraries.png)
+   2. Click +, select 「Add other...」, then go into  `Carthage/Build/iOS`, find  `ALayout.framework` and add it.
 
+4. You need to add Run Script to at your build phases:
+
+   ![Build Phases](assets/Build phases.png)
+
+   Make sure the path in the `Input Files` section is correct.
 
 <br/>
 <br/>

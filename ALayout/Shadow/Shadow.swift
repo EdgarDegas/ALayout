@@ -23,7 +23,7 @@ public struct Shadow {
     public typealias Offset = (dx: CGFloat, dy: CGFloat)
     
     /// Color of the shadow.
-    public var color: UIColor  = .black
+    public var color: ShadowColor = UIColor.black
     
     /// The shadow's (x, y) offset. Defaults to (0, 0).
     public var offset: CGVector = .init(dx: 0, dy: 0)
@@ -60,7 +60,7 @@ public struct Shadow {
     ///     - spread: You might be familiar with this property if you use Sketch often.
     ///               If not, this might be unnecessary for you. See `spread` for detail.
     public init(color: ShadowColor, opacity: CGFloat, offset: Offset, blur: CGFloat, spread: CGFloat) {
-        self.color   = color.uiColor
+        self.color   = color
         self.opacity = opacity
         self.spread  = spread
         self.blur    = blur
