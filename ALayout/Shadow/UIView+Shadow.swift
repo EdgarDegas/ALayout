@@ -14,7 +14,7 @@ extension UIView: HavingShadow {
     ///
     /// You can get its current shadow parameters by visiting shadowLayer's `shadow` property,
     /// which is normally not nil if you **did not** directly instantiate the ShadowLayer.
-    var shadowLayer: ShadowLayer? {
+    public var shadowLayer: ShadowLayer? {
         return layer.sublayers?.first(where: { $0 is ShadowLayer }) as? ShadowLayer
     }
     
