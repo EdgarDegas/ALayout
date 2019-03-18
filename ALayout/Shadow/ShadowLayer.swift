@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ShadowLayer: CALayer {
+public class ShadowLayer: CALaye {
     
     private(set) var shadow: Shadow? {
         didSet {
