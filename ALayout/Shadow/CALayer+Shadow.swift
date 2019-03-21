@@ -17,7 +17,6 @@ extension CALayer: LayerHavingShadow {
     
     public func removeShadow(animated: Bool, completion: (() -> Void)?) {
         set(shadow: .init(), animated: animated) {
-            self.removeFromSuperlayer()
             completion?()
         }
     }

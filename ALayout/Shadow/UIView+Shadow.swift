@@ -24,7 +24,9 @@ extension UIView: HavingShadow {
     ///     - animated: If true, the shadow disappear with a fade transition.
     ///     - completion: Block invoked after transition.
     open func removeShadow(animated: Bool = false, completion: (() -> Void)? = nil) {
-        shadowLayer?.removeShadow(animated: animated, completion: completion)
+        guard let shadowLayer = shadowLayer else { return }
+        shadowLayer.removeShadow(animated: animated, completion: completion)
+        shadowLayer.removeFromSuperlayer()
     }
 
     /// Add or change the shadow of the view.
