@@ -13,9 +13,12 @@
 		B3643A6021CD3F48009BC349 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3643A5F21CD3F48009BC349 /* UIView+Gradient.swift */; };
 		B3675A3D21CBA579009FDA80 /* ALayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B3675A3B21CBA579009FDA80 /* ALayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3675A4421CBA5A4009FDA80 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3675A4321CBA5A3009FDA80 /* Shadow.swift */; };
+		B3C2E73622400C2D00A3D552 /* CGShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C2E73522400C2D00A3D552 /* CGShortcuts.swift */; };
 		B3C9908B223E85FB000BF91E /* ShadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C9908A223E85FB000BF91E /* ShadowColor.swift */; };
 		B3C99095223EAED9000BF91E /* ALayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C99094223EAED9000BF91E /* ALayoutTests.swift */; };
 		B3C99097223EAED9000BF91E /* ALayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3675A3821CBA579009FDA80 /* ALayout.framework */; };
+		B3C990E322400351000BF91E /* LayerHavingShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C990E222400351000BF91E /* LayerHavingShadow.swift */; };
+		B3C990E52240045D000BF91E /* CALayer+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C990E42240045D000BF91E /* CALayer+Shadow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +40,13 @@
 		B3675A3B21CBA579009FDA80 /* ALayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALayout.h; sourceTree = "<group>"; };
 		B3675A3C21CBA579009FDA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3675A4321CBA5A3009FDA80 /* Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
+		B3C2E73522400C2D00A3D552 /* CGShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGShortcuts.swift; sourceTree = "<group>"; };
 		B3C9908A223E85FB000BF91E /* ShadowColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowColor.swift; sourceTree = "<group>"; };
 		B3C99092223EAED9000BF91E /* ALayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ALayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C99094223EAED9000BF91E /* ALayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALayoutTests.swift; sourceTree = "<group>"; };
 		B3C99096223EAED9000BF91E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3C990E222400351000BF91E /* LayerHavingShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerHavingShadow.swift; sourceTree = "<group>"; };
+		B3C990E42240045D000BF91E /* CALayer+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Shadow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +71,10 @@
 		B3643A5E21CD3DFF009BC349 /* Shadow */ = {
 			isa = PBXGroup;
 			children = (
+				B3C990E42240045D000BF91E /* CALayer+Shadow.swift */,
 				B30C6454223E618100F7206C /* UIView+Shadow.swift */,
-				B3675A4321CBA5A3009FDA80 /* Shadow.swift */,
-				B3C9908A223E85FB000BF91E /* ShadowColor.swift */,
-				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
-				B30C6456223E643C00F7206C /* HavingShadow.swift */,
+				B3C2E73A22400D2E00A3D552 /* Protocols */,
+				B3C2E7402243C8CB00A3D552 /* Models */,
 			);
 			path = Shadow;
 			sourceTree = "<group>";
@@ -95,12 +100,40 @@
 		B3675A3A21CBA579009FDA80 /* ALayout */ = {
 			isa = PBXGroup;
 			children = (
+				B3C2E73422400C1D00A3D552 /* Shortcuts */,
 				B3643A5E21CD3DFF009BC349 /* Shadow */,
 				B3643A5F21CD3F48009BC349 /* UIView+Gradient.swift */,
 				B3675A3B21CBA579009FDA80 /* ALayout.h */,
 				B3675A3C21CBA579009FDA80 /* Info.plist */,
 			);
 			path = ALayout;
+			sourceTree = "<group>";
+		};
+		B3C2E73422400C1D00A3D552 /* Shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				B3C2E73522400C2D00A3D552 /* CGShortcuts.swift */,
+			);
+			path = Shortcuts;
+			sourceTree = "<group>";
+		};
+		B3C2E73A22400D2E00A3D552 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B3C990E222400351000BF91E /* LayerHavingShadow.swift */,
+				B30C6456223E643C00F7206C /* HavingShadow.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B3C2E7402243C8CB00A3D552 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */,
+				B3675A4321CBA5A3009FDA80 /* Shadow.swift */,
+				B3C9908A223E85FB000BF91E /* ShadowColor.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B3C99093223EAED9000BF91E /* ALayoutTests */ = {
@@ -222,8 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3675A4421CBA5A4009FDA80 /* Shadow.swift in Sources */,
+				B3C990E52240045D000BF91E /* CALayer+Shadow.swift in Sources */,
+				B3C2E73622400C2D00A3D552 /* CGShortcuts.swift in Sources */,
 				B3C9908B223E85FB000BF91E /* ShadowColor.swift in Sources */,
 				B3643A6021CD3F48009BC349 /* UIView+Gradient.swift in Sources */,
+				B3C990E322400351000BF91E /* LayerHavingShadow.swift in Sources */,
 				B30C6455223E618100F7206C /* UIView+Shadow.swift in Sources */,
 				B3643A5D21CD26FD009BC349 /* ShadowLayer.swift in Sources */,
 				B30C6457223E643C00F7206C /* HavingShadow.swift in Sources */,
