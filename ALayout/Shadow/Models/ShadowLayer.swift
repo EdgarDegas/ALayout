@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// A CALayer subclass this framework uses to render shadows.
 public class ShadowLayer: CALayer {
     
+    /// The Shadow parameters of the layer.
     var shadow: Shadow? {
         didSet {
             guard let newValue = shadow else { return }
