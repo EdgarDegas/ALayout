@@ -13,22 +13,12 @@ extension UIView: HavingShadow {
     /// View's shadow layer.
     ///
     /// You can get its current shadow parameters by visiting shadowLayer's `shadow` property,
-    /// which is normally not nil if you **did not** directly instantiate the ShadowLayer.
+    /// which is normally not nil, unless you are instantiating the ShadowLayer by yourself.
     public var shadowLayer: ShadowLayer? {
         return layer.sublayers?.first(where: { $0 is ShadowLayer }) as? ShadowLayer
     }
     
-    /// Remove the shadow layer from your view's layer hierarchy.
-    ///
-    /// - Parameters:
-    ///     - animated: If true, the shadow disappear with a fade transition.
-    ///     - completion: Block invoked after transition.
-    open func removeShadow(animated: Bool = false, completion: (() -> Void)? = nil) {
-        guard let shadowLayer = shadowLayer else { return }
-        shadowLayer.removeShadow(animated: animated, completion: completion)
-        shadowLayer.removeFromSuperlayer()
-    }
-
+    
     /// Add or change the shadow of the view.
     ///
     /// If you have not call this method before, this method creates a ShadowLayer object, which
@@ -41,12 +31,16 @@ extension UIView: HavingShadow {
     /// nil if shadow has not been set.
     ///
     /// - Note:
-    ///     Shadow is a struct-based type, so you don't have to worry about any memory issues.
+    ///     Shadow is a struct-based type, so you don't have to worry about any memory issue.
+    ///
+    ///     If you don't want the inserting of a new CALayer, you can call `set(shadow:)` directly
+    ///     on your view's layer to add shadow on it.
     ///
     /// - Parameters:
     ///     - shadow: Shadow with parameters from you app's design.
     ///     - animated: If true, the shadow changes with animation.
-    ///     - completion: Called when animation ends.
+    ///     - completion: Invoked when animation ends (or immediately after the shadow is set
+    ///       if not animated).
     open func set(shadow: Shadow, animated: Bool = false, completion: (() -> Void)? = nil) {
         if let shadowLayer = shadowLayer {
             shadowLayer.set(shadow: shadow, animated: animated, completion: completion)
@@ -54,6 +48,21 @@ extension UIView: HavingShadow {
             configureShadow(shadow, animated: animated, completion: completion)
         }
     }
+    
+    
+    /// Remove the shadow layer from your view's layer hierarchy.
+    ///
+    /// - Parameters:
+    ///     - animated: If true, the shadow disappear with a fade transition.
+    ///     - completion: Block invoked after transition.
+    /// - Important:
+    ///     This competion is called only if there is actually a shadow layer before being removed.
+    open func removeShadow(animated: Bool = false, completion: (() -> Void)? = nil) {
+        guard let shadowLayer = shadowLayer else { return }
+        shadowLayer.removeShadow(animated: animated, completion: completion)
+        shadowLayer.removeFromSuperlayer()
+    }
+
     
     /// This method reset the shadow layer's position and size.
     ///

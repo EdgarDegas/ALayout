@@ -9,12 +9,29 @@
 import UIKit
 
 extension CALayer: LayerHavingShadow {
+    
+    /// Add or change the shadow parameters of the layer.
+    ///
+    /// - Parameters:
+    ///     - shadow: A Shadow object containing shadow parameters.
+    ///     - animated: If true, the changing of shadow is animated.
+    ///     - completion: The handler is invoked when the animation completes
+    ///       (or immediately after the setup of the shadow if not animated).
     public func set(shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
         if animated { animate(into: shadow, completion: completion) }
         if self is ShadowLayer { (self as! ShadowLayer).shadow = shadow }
         else { configureShadow(shadow) }
+        if animated == false { completion?() }
     }
     
+    /// Visually remove the shadow of the layer.
+    ///
+    /// This method set the shadow parameters into the default sets of `Shadow`.
+    ///
+    /// - Parameters:
+    ///     - animated: If true, the removing process is animated.
+    ///     - completion: Invoked after animtion (or immediately after the
+    ///       shadow is set if not animated).
     public func removeShadow(animated: Bool, completion: (() -> Void)?) {
         set(shadow: .init(), animated: animated) {
             completion?()
