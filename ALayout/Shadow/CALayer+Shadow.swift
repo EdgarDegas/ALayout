@@ -18,9 +18,11 @@ extension CALayer: LayerHavingShadow {
     ///     - completion: The handler is invoked when the animation completes
     ///       (or immediately after the setup of the shadow if not animated).
     public func set(shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
-        if animated { animate(into: shadow, completion: completion) }
-        if self is ShadowLayer { (self as! ShadowLayer).shadow = shadow }
-        else { configureShadow(shadow) }
+        var shadowCopy = shadow
+        shadowCopy.path = CGPath.shadowPath(for: self, with: shadow.spread)
+        if animated { animate(into: shadowCopy, completion: completion) }
+        if self is ShadowLayer { (self as! ShadowLayer).shadow = shadowCopy }
+        else { configureShadow(shadowCopy) }
         if animated == false { completion?() }
     }
     
@@ -39,6 +41,7 @@ extension CALayer: LayerHavingShadow {
     }
     
     func configureShadow(_ shadow: Shadow) {
+        shadowPath = shadow.path
         shadowOpacity = Float(shadow.opacity)
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
@@ -51,8 +54,13 @@ extension CALayer: LayerHavingShadow {
         animations.animations = [
             blurAnimation   (to: shadow.blur   ),
             opacityAnimation(to: shadow.opacity),
-            offsetAnimation (to: shadow.offset )
+            offsetAnimation (to: shadow.offset ),
         ]
+        
+        if let pathAnimation = pathAnimation(to: shadow.path) {
+            animations.animations?.append(pathAnimation)
+        }
+        
         animations.duration = duration
         animations.timingFunction = CAMediaTimingFunction(name: .easeOut)
         
@@ -61,6 +69,14 @@ extension CALayer: LayerHavingShadow {
         }
         
         add(animations, forKey: "shadowAnimation")
+    }
+    
+    func pathAnimation(to path: CGPath?) -> CABasicAnimation? {
+        guard let path = path else { return nil }
+        let animation = CABasicAnimation(keyPath: "shadowPath")
+        animation.fromValue = shadowPath
+        animation.toValue = path
+        return animation
     }
     
     func blurAnimation(to blur: CGFloat) -> CABasicAnimation {

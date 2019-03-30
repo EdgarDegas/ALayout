@@ -89,6 +89,7 @@ extension UIView {
         shadowLayer.cornerRadius = layer.cornerRadius
         shadowLayer.backgroundColor = backgroundColor?.cgColor
         layer.insertSublayer(shadowLayer, at: 0)
+        shadowLayer.frame = layer.bounds
         shadowLayer.set(shadow: shadow, animated: animated, completion: completion)
         configureLayout(of: shadowLayer)
     }
@@ -96,11 +97,6 @@ extension UIView {
     private func configureLayout(of shadowLayer: ShadowLayer) {
         guard let shadow = shadowLayer.shadow else { return }
         shadowLayer.frame = bounds
-        let inset = -shadow.spread
-        shadowLayer.shadowPath = CGPath(
-            roundedRect: bounds.insetBy(dx: inset, dy: inset),
-            cornerWidth : layer.cornerRadius,
-            cornerHeight: layer.cornerRadius,
-            transform: nil)
+        shadowLayer.configureShadow(shadow)
     }
 }
