@@ -16,5 +16,5 @@ protocol ShadowAnimatable: class {
     
     func blurAnimation   (to blur   : CGFloat ) -> CABasicAnimation
     func opacityAnimation(to opacity: CGFloat ) -> CABasicAnimation
-    func offsetAnimation (to offset : CGVector) -> CABasicAnimation
+    func offsetAnimation (to offset : CGSize) -> CABasicAnimation
 }

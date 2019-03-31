@@ -17,16 +17,13 @@ import UIKit
 /// your app's design.
 public struct Shadow {
     
-    /// Shadow offset.
-    ///
-    /// A positive value means rightwards on x-axis and downwards on y-axis.
-    public typealias Offset = (dx: CGFloat, dy: CGFloat)
-    
     /// Color of the shadow.
     public var color: ShadowColor = UIColor.black
     
     /// The shadow's (x, y) offset. Defaults to (0, 0).
-    public var offset: CGVector = .init(dx: 0, dy: 0)
+    ///
+    /// A positive value means rightwards on x-axis and downwards on y-axis.
+    public var offset: Offset = (dx: 0, dy: 0)
     
     /// Shadow opacity. Defaults to 0.
     public var opacity: CGFloat  = 0
@@ -66,7 +63,7 @@ public struct Shadow {
         self.opacity = opacity
         self.spread  = spread
         self.blur    = blur
-        self.offset  = .init(dx: offset.dx, dy: offset.dy)
+        self.offset  = offset
     }
     
     /// Initialize a Shadow object with the same parameters from your app's design.

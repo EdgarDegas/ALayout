@@ -45,7 +45,7 @@ extension UIView: HavingShadow {
         if let shadowLayer = shadowLayer {
             shadowLayer.set(shadow: shadow, animated: animated, completion: completion)
         } else {
-            configureShadow(shadow, animated: animated, completion: completion)
+            addShadowLayer(with: shadow, animated: animated, completion: completion)
         }
     }
     
@@ -84,7 +84,7 @@ extension UIView: HavingShadow {
 
 extension UIView {
     
-    private func configureShadow(_ shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
+    private func addShadowLayer(with shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
         let shadowLayer = ShadowLayer()
         shadowLayer.cornerRadius = layer.cornerRadius
         shadowLayer.backgroundColor = backgroundColor?.cgColor
