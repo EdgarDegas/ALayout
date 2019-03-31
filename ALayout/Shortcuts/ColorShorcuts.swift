@@ -6,7 +6,7 @@
 //  Copyright © 2019 iMoe. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Convenient color setups.
 ///
