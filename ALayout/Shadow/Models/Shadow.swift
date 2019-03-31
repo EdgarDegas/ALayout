@@ -43,8 +43,6 @@ public struct Shadow {
     /// Shadow blur radius.
     public var blur: CGFloat  = 0
     
-    var path: CGPath?
-    
     /// Initialize a Shadow object with default shadow parameters.
     public init() { }
     
