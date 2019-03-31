@@ -8,10 +8,13 @@
 
 import UIKit
 
-extension CGVector {
-    var cgSize: CGSize { return .init(width: dx, height: dy) }
-}
+public typealias Offset = (dx: CGFloat, dy: CGFloat)
 
+extension CGSize {
+    static func size(from offset: Offset) -> CGSize {
+        return .init(width: offset.dx, height: offset.dy)
+    }
+}
 
 extension CGPath {
     static func shadowPath(for layer: CALayer, with spread: CGFloat) -> CGPath {
