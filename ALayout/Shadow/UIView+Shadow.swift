@@ -91,12 +91,11 @@ extension UIView {
         layer.insertSublayer(shadowLayer, at: 0)
         shadowLayer.frame = layer.bounds
         shadowLayer.set(shadow: shadow, animated: animated, completion: completion)
-        configureLayout(of: shadowLayer)
     }
     
     private func configureLayout(of shadowLayer: ShadowLayer) {
         guard let shadow = shadowLayer.shadow else { return }
         shadowLayer.frame = bounds
-        shadowLayer.configureShadow(shadow)
+        shadowLayer.configureShadowPath(using: shadow.spread)
     }
 }

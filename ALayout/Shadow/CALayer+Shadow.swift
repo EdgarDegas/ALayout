@@ -18,11 +18,9 @@ extension CALayer: LayerHavingShadow {
     ///     - completion: The handler is invoked when the animation completes
     ///       (or immediately after the setup of the shadow if not animated).
     public func set(shadow: Shadow, animated: Bool, completion: (() -> Void)? = nil) {
-        var shadowCopy = shadow
-        shadowCopy.path = CGPath.shadowPath(for: self, with: shadow.spread)
-        if animated { animate(into: shadowCopy, completion: completion) }
-        if self is ShadowLayer { (self as! ShadowLayer).shadow = shadowCopy }
-        else { configureShadow(shadowCopy) }
+        if animated { animate(into: shadow, completion: completion) }
+        if self is ShadowLayer { (self as! ShadowLayer).shadow = shadow }
+        else { configureShadow(shadow) }
         if animated == false { completion?() }
     }
     
@@ -41,25 +39,28 @@ extension CALayer: LayerHavingShadow {
     }
     
     func configureShadow(_ shadow: Shadow) {
-        shadowPath = shadow.path
+        configureShadowPath(using: shadow.spread)
         shadowOpacity = Float(shadow.opacity)
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
         shadowOffset  = CGSize.size(from: shadow.offset)
     }
     
+    func configureShadowPath(using spread: CGFloat) {
+        shadowPath = CGPath.shadowPath(for: self, with: spread)
+    }
+    
     func animate(into shadow: Shadow, completion: (() -> Void)? = nil) {
         let duration: TimeInterval = convertTime(0.25, from: superlayer)
         let animations = CAAnimationGroup()
+        let newPath = CGPath.shadowPath(for: self, with: shadow.spread)
+        
         animations.animations = [
             blurAnimation   (to: shadow.blur   ),
             opacityAnimation(to: shadow.opacity),
             offsetAnimation (to: CGSize.size(from: shadow.offset)),
+            pathAnimation(to: newPath)
         ]
-        
-        if let pathAnimation = pathAnimation(to: shadow.path) {
-            animations.animations?.append(pathAnimation)
-        }
         
         animations.duration = duration
         animations.timingFunction = CAMediaTimingFunction(name: .easeOut)
@@ -71,8 +72,7 @@ extension CALayer: LayerHavingShadow {
         add(animations, forKey: "shadowAnimation")
     }
     
-    func pathAnimation(to path: CGPath?) -> CABasicAnimation? {
-        guard let path = path else { return nil }
+    func pathAnimation(to path: CGPath) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: "shadowPath")
         animation.fromValue = shadowPath
         animation.toValue = path
