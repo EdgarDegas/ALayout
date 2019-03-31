@@ -9,7 +9,8 @@
 import UIKit
 
 public extension UIView {
-    func addGradientLayer(gradientLayer: CAGradientLayer) {
+    func setGradientBackground(with settings: GradientSettings) {
+        let gradientLayer = GradientLayer(settings: settings)
         gradientLayer.frame = bounds
         layer.insertSublayer(gradientLayer, at: 0)
     }
