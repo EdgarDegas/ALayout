@@ -45,7 +45,7 @@ extension CALayer: LayerHavingShadow {
         shadowOpacity = Float(shadow.opacity)
         shadowRadius  = shadow.blur
         shadowColor   = shadow.color.cgColor
-        shadowOffset  = shadow.offset.cgSize
+        shadowOffset  = CGSize.size(from: shadow.offset)
     }
     
     func animate(into shadow: Shadow, completion: (() -> Void)? = nil) {
@@ -54,7 +54,7 @@ extension CALayer: LayerHavingShadow {
         animations.animations = [
             blurAnimation   (to: shadow.blur   ),
             opacityAnimation(to: shadow.opacity),
-            offsetAnimation (to: shadow.offset ),
+            offsetAnimation (to: CGSize.size(from: shadow.offset)),
         ]
         
         if let pathAnimation = pathAnimation(to: shadow.path) {
@@ -93,10 +93,10 @@ extension CALayer: LayerHavingShadow {
         return animation
     }
     
-    func offsetAnimation(to offset: CGVector) -> CABasicAnimation {
+    func offsetAnimation(to offset: CGSize) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: "shadowOffset")
         animation.fromValue = shadowOffset
-        animation.toValue = offset.cgSize
+        animation.toValue = offset
         return animation
     }
 }
