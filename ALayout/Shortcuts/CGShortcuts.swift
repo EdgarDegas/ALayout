@@ -8,6 +8,9 @@
 
 import UIKit
 
+public typealias Point  = ( x: CGFloat,  y: CGFloat)
+public typealias Offset = (dx: CGFloat, dy: CGFloat)
+
 extension CGVector {
     var cgSize: CGSize { return .init(width: dx, height: dy) }
 }
