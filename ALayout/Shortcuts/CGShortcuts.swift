@@ -9,6 +9,7 @@
 import UIKit
 
 public typealias Offset = (dx: CGFloat, dy: CGFloat)
+public typealias Point  = ( x: CGFloat,  y: CGFloat)
 
 extension CGSize {
     static func size(from offset: Offset) -> CGSize {
