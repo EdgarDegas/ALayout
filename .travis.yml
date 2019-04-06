@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode10.2
 xcode_project: ALayout.xcodeproj
 xcode_scheme: ALayout
-xcode_sdk: iphonesimulator12.1
+xcode_sdk: iphonesimulator12.2
 env:
   global:
   - FRAMEWORK_NAME=ALayout
