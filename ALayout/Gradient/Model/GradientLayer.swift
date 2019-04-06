@@ -9,15 +9,22 @@
 import UIKit
 
 class GradientLayer: CAGradientLayer {
-    init(settings: GradientSettings) {
-        super.init()
+//    init(settings: GradientSettings) {
+//        super.init()
+//        let allStops = settings.allStops
+//        colors = allStops.map { $0.color.cgColor }
+//        startPoint = settings.beginStop.cgPoint
+//        endPoint   = settings.endStop  .cgPoint
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("You should not initialize ALayout.GradientLayer from IB or with `init?(coder:)`.")
+//    }
+    
+    open func setGradient(with settings: GradientSettings, animated: Bool = false) {
         let allStops = settings.allStops
         colors = allStops.map { $0.color.cgColor }
         startPoint = settings.beginStop.cgPoint
         endPoint   = settings.endStop  .cgPoint
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("You should not initialize ALayout.GradientLayer from IB or with `init?(coder:)`.")
     }
 }
