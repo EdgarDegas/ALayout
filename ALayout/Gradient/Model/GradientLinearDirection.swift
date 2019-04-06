@@ -33,4 +33,18 @@ public enum GradientLinearDirection {
     ///     The behaviour remains the same with Sketch.app, and of course with CAGradientLayer's
     ///     startPoint and endPoint.
     case custom(begin: Point, end: Point)
+    
+    /// The begin and end points of the direction.
+    var points: (begin: Point, end: Point) {
+        switch self {
+        case .vertical:
+            return ((0.5, 0.0), (0.5, 1.0))
+        case .horizontal:
+            return ((0.0, 0.5), (1.0, 0.5))
+        case .diagonal:
+            return ((0.0, 0.0), (1.0, 1.0))
+        case let .custom(begin, end):
+            return (begin, end)
+        }
+    }
 }
