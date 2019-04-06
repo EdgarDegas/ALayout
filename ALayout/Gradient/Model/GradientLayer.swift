@@ -9,22 +9,20 @@
 import UIKit
 
 class GradientLayer: CAGradientLayer {
-//    init(settings: GradientSettings) {
-//        super.init()
-//        let allStops = settings.allStops
-//        colors = allStops.map { $0.color.cgColor }
-//        startPoint = settings.beginStop.cgPoint
-//        endPoint   = settings.endStop  .cgPoint
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("You should not initialize ALayout.GradientLayer from IB or with `init?(coder:)`.")
-//    }
     
-    open func setGradient(with settings: GradientSettings, animated: Bool = false) {
-        let allStops = settings.allStops
-        colors = allStops.map { $0.color.cgColor }
-        startPoint = settings.beginStop.cgPoint
-        endPoint   = settings.endStop  .cgPoint
+    open func setGradient(with colors: Array<ColorDescribable>, within direction: GradientLinearDirection = .vertical) {
+        var settings = GradientSettings(colorStops: colors.map { return GradientStop(color: $0) })
+        settings.direction = direction
+        setGradient(with: settings)
+    }
+    
+    open func setGradient(from beginColor: ColorDescribable, to endColor: ColorDescribable, within direction: GradientLinearDirection = .vertical) {
+        setGradient(with: [beginColor, endColor], within: direction)
+    }
+    
+    open func setGradient(with settings: GradientSettings) {
+        colors = settings.colorStops.map { $0.color.cgColor }
+        startPoint = CGPoint(x: settings.beginPoint.x, y: settings.beginPoint.y)
+        endPoint   = CGPoint(x: settings.endPoint  .x, y: settings.endPoint  .y)
     }
 }

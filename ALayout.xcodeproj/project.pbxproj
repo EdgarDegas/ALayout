@@ -14,6 +14,7 @@
 		B34624442250806F00979B64 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34624432250806F00979B64 /* GradientLayer.swift */; };
 		B346250522508FA800979B64 /* GradientStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B346250422508FA800979B64 /* GradientStop.swift */; };
 		B34625B02250FC0500979B64 /* GradientBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34625AF2250FC0500979B64 /* GradientBackgroundLayer.swift */; };
+		B34625DD2258D4C200979B64 /* GradientLinearDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34625DC2258D4C200979B64 /* GradientLinearDirection.swift */; };
 		B3643A5D21CD26FD009BC349 /* ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */; };
 		B3643A6021CD3F48009BC349 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3643A5F21CD3F48009BC349 /* UIView+Gradient.swift */; };
 		B3675A3D21CBA579009FDA80 /* ALayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B3675A3B21CBA579009FDA80 /* ALayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -44,6 +45,7 @@
 		B34624432250806F00979B64 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		B346250422508FA800979B64 /* GradientStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStop.swift; sourceTree = "<group>"; };
 		B34625AF2250FC0500979B64 /* GradientBackgroundLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundLayer.swift; sourceTree = "<group>"; };
+		B34625DC2258D4C200979B64 /* GradientLinearDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLinearDirection.swift; sourceTree = "<group>"; };
 		B3643A5C21CD26FD009BC349 /* ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowLayer.swift; sourceTree = "<group>"; };
 		B3643A5F21CD3F48009BC349 /* UIView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 		B3675A3821CBA579009FDA80 /* ALayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		B346243E22507B4000979B64 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B34625DC2258D4C200979B64 /* GradientLinearDirection.swift */,
 				B346243F22507B5000979B64 /* GradientSettings.swift */,
 				B346250422508FA800979B64 /* GradientStop.swift */,
 				B34624432250806F00979B64 /* GradientLayer.swift */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B346244222507BA100979B64 /* ColorShorcuts.swift in Sources */,
+				B34625DD2258D4C200979B64 /* GradientLinearDirection.swift in Sources */,
 				B3675A4421CBA5A4009FDA80 /* Shadow.swift in Sources */,
 				B3C990E52240045D000BF91E /* CALayer+Shadow.swift in Sources */,
 				B3C2E73622400C2D00A3D552 /* CGShortcuts.swift in Sources */,
