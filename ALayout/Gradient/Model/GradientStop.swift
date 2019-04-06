@@ -10,7 +10,9 @@ import UIKit
 
 struct GradientStop {
     var color: ColorDescribable
-    var point: Point
+    var progress: CGFloat?
     
-    var cgPoint: CGPoint { return .init(x: point.x, y: point.y) }
+    init(color: ColorDescribable) {
+        self.color = color
+    }
 }

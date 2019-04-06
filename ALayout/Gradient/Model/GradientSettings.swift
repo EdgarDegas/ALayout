@@ -6,20 +6,31 @@
 //  Copyright © 2019 iMoe. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct GradientSettings {
-    var beginStop: GradientStop
-    var endStop  : GradientStop
-    var middleColors: Array<GradientStop>
+    var colorStops: Array<GradientStop>
     
-    init(begin: GradientStop, end: GradientStop) {
-        beginStop = begin
-        endStop   = end
-        self.middleColors = .init()
+    var beginPoint: Point
+    var endPoint  : Point
+    
+    var direction: GradientLinearDirection {
+        didSet {
+            let points = direction.points
+            beginPoint = points.begin
+            endPoint   = points.end
+        }
     }
     
-    var allStops: Array<GradientStop> {
-        return [beginStop] + middleColors + [endStop]
+    init(begin: GradientStop, end: GradientStop) {
+        self = GradientSettings(colorStops: [begin, end])
+    }
+    
+    init(colorStops: Array<GradientStop>) {
+        self.colorStops = colorStops
+        direction = .vertical
+        let points = direction.points
+        beginPoint = points.begin
+        endPoint   = points.end
     }
 }
