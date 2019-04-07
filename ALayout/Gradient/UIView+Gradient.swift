@@ -8,16 +8,9 @@
 
 import UIKit
 
+
+// MARK: - Interfaces
 extension UIView {
-    
-    var gradientBackgroundLayer: GradientBackgroundLayer? {
-        return layer.sublayers?.first(where: { $0 is GradientBackgroundLayer }) as? GradientBackgroundLayer
-    }
-    
-    var gradientLayers:Array<GradientLayer>? {
-        return layer.sublayers?.filter { $0 is GradientLayer } as? Array<GradientLayer>
-    }
-    
     open func setGradientBackground(with colors: Array<ColorDescribable>, within direction: GradientLinearDirection = .vertical) {
         if let backgroundLayer = gradientBackgroundLayer {
             backgroundLayer.setGradient(with: colors, within: direction)
@@ -51,7 +44,21 @@ extension UIView {
 }
 
 
+// MARK: - Internal interfaces
+extension UIView {
+    
+    var gradientBackgroundLayer: GradientBackgroundLayer? {
+        return layer.sublayers?.first(where: { $0 is GradientBackgroundLayer }) as? GradientBackgroundLayer
+    }
+    
+    var gradientLayers:Array<GradientLayer>? {
+        return layer.sublayers?.filter { $0 is GradientLayer } as? Array<GradientLayer>
+    }
+    
+}
 
+
+// MARK: - Helpers
 extension UIView {
     
     private func addGradientLayer(with settings: GradientSettings, isBackground: Bool) {
