@@ -24,5 +24,60 @@ class GradientLayer: CAGradientLayer {
         colors = settings.colorStops.map { $0.color.cgColor }
         startPoint = CGPoint(x: settings.beginPoint.x, y: settings.beginPoint.y)
         endPoint   = CGPoint(x: settings.endPoint  .x, y: settings.endPoint  .y)
+
+// MARK: - Helpers
+extension GradientLayer {
+    private func animate(into gradientSettings: GradientSettings, completion: (() -> Void)? = nil) {
+        let duration: TimeInterval = convertTime(0.25, from: superlayer)
+        let animationGroup = CAAnimationGroup()
+        
+        
+        let pointAnimations = directionAnimations(to: gradientSettings)
+        
+        animationGroup.animations = [
+            colorsAnimation(to: gradientSettings),
+            pointAnimations.startPoint,
+            pointAnimations.endPoint,
+            locationsAnimation(to: gradientSettings)
+        ]
+        
+        animationGroup.duration = duration
+//        animationGroup.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            completion?()
+        }
+        
+        add(animationGroup, forKey: "gradientAnimation")
+    }
+    
+    private func colorsAnimation(to gradientSettings: GradientSettings) -> CABasicAnimation {
+        let animation = CABasicAnimation(keyPath: #keyPath(colors))
+        animation.fromValue = colors
+        animation.toValue = gradientSettings.colorStops.map { $0.color.cgColor }
+        return animation
+    }
+    
+    private func directionAnimations(to gradientSettings: GradientSettings) -> (startPoint: CABasicAnimation, endPoint: CABasicAnimation) {
+        func pointAnimation(keyPath: String?, from: CGPoint, to: CGPoint) -> CABasicAnimation {
+            let animation = CABasicAnimation(keyPath: keyPath)
+            animation.fromValue = from
+            animation.toValue   = to
+            return animation
+        }
+        
+        let beginPoint = gradientSettings.beginPoint!
+        let beginAnimation = pointAnimation(keyPath: #keyPath(startPoint), from: startPoint, to: .init(x: beginPoint.x, y: beginPoint.y))
+        
+        let theEndPoint = gradientSettings.endPoint!
+        let endAnimation = pointAnimation(keyPath: #keyPath(endPoint), from: endPoint, to: .init(x: theEndPoint.x, y: theEndPoint.y))
+        return (beginAnimation, endAnimation)
+    }
+    
+    private func locationsAnimation(to gradientSettings: GradientSettings) -> CABasicAnimation {
+        let animation = CABasicAnimation(keyPath: #keyPath(locations))
+        animation.fromValue = locations
+        animation.toValue = gradientSettings.colorStops.compactMap { $0.progress?.nsNumber }
+        return animation
     }
 }
