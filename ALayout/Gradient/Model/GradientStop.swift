@@ -10,9 +10,16 @@ import UIKit
 
 struct GradientStop {
     var color: ColorDescribable
-    var progress: CGFloat?
+    var progress: Double?
     
-    init(color: ColorDescribable) {
-        self.color = color
+    init(color: ColorDescribable, progress: Double? = nil) {
+        self.color    = color
+        self.progress = progress
+    }
+}
+
+extension Double {
+    var nsNumber: NSNumber {
+        return NSNumber(value: self)
     }
 }
