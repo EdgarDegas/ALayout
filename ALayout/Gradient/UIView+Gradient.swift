@@ -11,27 +11,27 @@ import UIKit
 
 // MARK: - Interfaces
 extension UIView {
-    open func setGradientBackground(with colors: Array<ColorDescribable>, within direction: GradientLinearDirection = .vertical) {
+    open func setGradientBackground(with colors: Array<ColorDescribable>, animated: Bool = false, within direction: GradientLinearDirection = .vertical) {
         if let backgroundLayer = gradientBackgroundLayer {
-            backgroundLayer.setGradient(with: colors, within: direction)
+            backgroundLayer.setGradient(with: colors, animated: animated, within: direction)
         } else {
-            addGradientLayer(with: colors, within: direction, isBackground: true)
+            addGradientLayer(with: colors, animated: animated, within: direction, isBackground: true)
         }
     }
     
-    open func setGradientBackground(from beginColor: ColorDescribable, to endColor: ColorDescribable, within direction: GradientLinearDirection = .vertical) {
+    open func setGradientBackground(from beginColor: ColorDescribable, to endColor: ColorDescribable, animated: Bool = false, within direction: GradientLinearDirection = .vertical) {
         if let backgroundLayer = gradientBackgroundLayer {
-            backgroundLayer.setGradient(from: beginColor, to: endColor, within: direction)
+            backgroundLayer.setGradient(from: beginColor, to: endColor, animated: animated, within: direction)
         } else {
-            addGradientLayer(from: beginColor, to: endColor, within: direction, isBackground: true)
+            addGradientLayer(from: beginColor, to: endColor, animated: animated, within: direction, isBackground: true)
         }
     }
     
-    open func setGradientBackground(with settings: GradientSettings) {
+    open func setGradientBackground(with settings: GradientSettings, animated: Bool = false) {
         if let backgroundLayer = gradientBackgroundLayer {
-            backgroundLayer.setGradient(with: settings)
+            backgroundLayer.setGradient(with: settings, animated: animated)
         } else {
-            addGradientLayer(with: settings, isBackground: true)
+            addGradientLayer(with: settings, animated: animated, isBackground: true)
         }
     }
     
@@ -61,18 +61,18 @@ extension UIView {
 // MARK: - Helpers
 extension UIView {
     
-    private func addGradientLayer(with settings: GradientSettings, isBackground: Bool) {
+    private func addGradientLayer(with settings: GradientSettings, animated: Bool, isBackground: Bool) {
         let gradientLayer = insertGradientLayer(isBackground: isBackground)
-        gradientLayer.setGradient(with: settings)
+        gradientLayer.setGradient(with: settings, animated: animated)
     }
     
-    private func addGradientLayer(with colors: Array<ColorDescribable>, within direction: GradientLinearDirection, isBackground: Bool) {
+    private func addGradientLayer(with colors: Array<ColorDescribable>, animated: Bool, within direction: GradientLinearDirection, isBackground: Bool) {
         let gradientLayer = insertGradientLayer(isBackground: isBackground)
-        gradientLayer.setGradient(with: colors, within: direction)
+        gradientLayer.setGradient(with: colors, animated: animated, within: direction)
     }
     
-    private func addGradientLayer(from beginColor: ColorDescribable, to endColor: ColorDescribable, within direction: GradientLinearDirection, isBackground: Bool) {
-        addGradientLayer(with: [beginColor, endColor], within: direction, isBackground: isBackground)
+    private func addGradientLayer(from beginColor: ColorDescribable, to endColor: ColorDescribable, animated: Bool, within direction: GradientLinearDirection, isBackground: Bool) {
+        addGradientLayer(with: [beginColor, endColor], animated: animated, within: direction, isBackground: isBackground)
     }
     
     

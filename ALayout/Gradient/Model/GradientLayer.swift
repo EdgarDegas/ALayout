@@ -10,20 +10,27 @@ import UIKit
 
 class GradientLayer: CAGradientLayer {
     
-    open func setGradient(with colors: Array<ColorDescribable>, within direction: GradientLinearDirection = .vertical) {
+    open func setGradient(with colors: Array<ColorDescribable>, animated: Bool = false, within direction: GradientLinearDirection = .vertical) {
         var settings = GradientSettings(colorStops: colors.map { return GradientStop(color: $0) })
         settings.direction = direction
-        setGradient(with: settings)
+        setGradient(with: settings, animated: animated)
     }
     
-    open func setGradient(from beginColor: ColorDescribable, to endColor: ColorDescribable, within direction: GradientLinearDirection = .vertical) {
-        setGradient(with: [beginColor, endColor], within: direction)
+    open func setGradient(from beginColor: ColorDescribable, to endColor: ColorDescribable, animated: Bool = false, within direction: GradientLinearDirection = .vertical) {
+        setGradient(with: [beginColor, endColor], animated: animated, within: direction)
     }
     
-    open func setGradient(with settings: GradientSettings) {
-        colors = settings.colorStops.map { $0.color.cgColor }
-        startPoint = CGPoint(x: settings.beginPoint.x, y: settings.beginPoint.y)
-        endPoint   = CGPoint(x: settings.endPoint  .x, y: settings.endPoint  .y)
+    open func setGradient(with settings: GradientSettings, animated: Bool = false) {
+        var theSetting = settings
+        if theSetting.direction == nil { theSetting.direction = .vertical }
+        if animated { animate(into: theSetting) }
+        locations = theSetting.colorStops.compactMap { $0.progress?.nsNumber }
+        startPoint = CGPoint(x: theSetting.beginPoint.x, y: theSetting.beginPoint.y)
+        endPoint   = CGPoint(x: theSetting.endPoint  .x, y: theSetting.endPoint  .y)
+        colors = theSetting.colorStops.map { $0.color.cgColor }
+    }
+}
+
 
 // MARK: - Helpers
 extension GradientLayer {
