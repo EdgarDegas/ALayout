@@ -20,6 +20,9 @@ public enum GradientLinearDirection {
     /// Graduate from top-left to bottom-right.
     case diagonal
     
+    /// Graduate from bottom-left to top-right.
+    case antiDiagonal
+    
     /// Customized gradient direction determined by two points.
     ///
     /// The color graduates from *begin* to *end*.
@@ -43,6 +46,8 @@ public enum GradientLinearDirection {
             return ((0.0, 0.5), (1.0, 0.5))
         case .diagonal:
             return ((0.0, 0.0), (1.0, 1.0))
+        case .antiDiagonal:
+            return ((0.0, 1.0), (1.0, 0.0))
         case let .custom(begin, end):
             return (begin, end)
         }
